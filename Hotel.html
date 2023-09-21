@@ -3,52 +3,78 @@
 <head>
 
 	<script>
-		/* olá */
+
 		var hotel = prompt("Qual o nome do Hotel?");
-			alert("O nome do Hotel é " + hotel);
-		
-			var nome = prompt("Qual seu nome?");
-			
-			senha();
-		
+		alert("O nome do Hotel é " + hotel);
+
+		var nome = prompt("Qual seu nome?");
+
+		senha();
+
 		alert("Bem vindo ao Hotel " + hotel + " " + nome + ". É um imenso prazer ter você por aqui")
-		function senha (){
+
+		function senha() {
 			var senha = prompt("Digite a senha");
-				while(senha != 2678){
-					alert("Senha errada.");
-					senha = prompt("Tente Novamente");
-				} 
-				
-				return true;
-				
+			while (senha != 2678) {
+				alert("Senha errada.");
+				senha = prompt("Tente Novamente");
 			}
-		
+
+			return true;
+
+		}
+
 		function inicio() {
 
-			var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
+			var escolha = parseInt(prompt('Selecione uma opção\n\n 1.) Reserva de Quartos\n 2.) Cadastro de Hóspedes\n 3.) Abastecimento de Carros\n 4.) Sair'));
 
-			switch(escolha){
-				case 1: 
-				 	 reserva_quartos();
-				  break;
-				case 2: 
-				  	cadastro_hospedes();
-				  break;
-				case 3: 
+			switch (escolha) {
+				case 1:
+					reserva_quartos();
+					break;
+				case 2:
+					cadastro_hospedes();
+					break;
+				case 3:
 					abastecer_carros();
-			      break;
-				case 4: 
+					break;
+				case 4:
 					sair();
-				  break;
-				default: 
+					break;
+				default:
 					erro();
-				  break;
+					break;
 			}
-			
+
 		}
 
 		function reserva_quartos() {
 			alert('HOTEL ' + hotel + ' - RESERVA DE QUARTOS');
+
+			var valor = parseFloat(prompt("Qual o valor padrão da diária?"));
+			if (valor < 0) {
+				alert("Valor inválido, " + nome);
+			} else {
+				var dias = parseFloat(prompt("Quantas diárias serão necessárias"));
+				if (dias < 0) {
+					alert("Valor inváliso, " + nome);
+				} else {
+					var hospede = prompt("Qual o nome do hóspede?");
+					   
+				}
+			}
+
+			var preço = valor*dias
+
+			var co = prompt(nome + ", você confirma a hospedagem para " + hospede + " por " + dias + " dias? S/N");
+
+			if(co == "s" ){
+				alert(nome + " reserva efetuada para " + hospede + ". O valor total é de " + preço + ".");
+			} else if(co == "n") {
+				alert(nome + ", reserva não efetuada")
+					inicio();
+			}
+
 			inicio();
 		}
 
