@@ -64,6 +64,7 @@
 				}
 			}
 
+			
 			var preço = valor*dias
 
 			var co = prompt(nome + ", você confirma a hospedagem para " + hospede + " por " + dias + " dias? S/N");
@@ -72,6 +73,7 @@
 				alert(nome + " reserva efetuada para " + hospede + ". O valor total é de " + preço + ".");
 			} else if(co == "n") {
 				alert(nome + ", reserva não efetuada")
+			
 					inicio();
 			}
 
@@ -80,7 +82,26 @@
 
 		function cadastro_hospedes() {
 			alert('HOTEL ' + hotel + ' - CADASTRO DE HÓSPEDES');
-			inicio();
+
+			var vlor = parseFloat(prompt("Qual o valor padrão?"));
+			var nm = prompt("Qual o nome do hospede?");
+			var idade = parseFloat(prompt("Qual a idade do hóspede"))
+		if( idade <= 6 || idade >= 60){
+				alert(nm + " cadastrada(o) com sucesso. " + nm + "possui gratuidade.")
+		} else{
+				alert(nm + "cadastrada(o) com sucesso.")
+				inicio();
+		}
+
+
+
+
+
+
+
+
+
+		
 		}
 
 		function abastecer_carros() {
