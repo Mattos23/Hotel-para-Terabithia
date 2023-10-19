@@ -26,7 +26,7 @@
 
 		function inicio() {
 
-			var escolha = parseInt(prompt('Selecione uma opção\n\n 1.) Reserva de Quartos\n 2.) Cadastro de Hóspedes\n 3.) Abastecimento de Carros\n 4.) Eventos\n 5.) Sair'));
+			var escolha = parseInt(prompt('Selecione uma opção\n\n 1.) Reserva de Quartos\n 2.) Cadastro de Hóspedes\n 3.) Abastecimento de Carros\n 4.) Eventos\n 5.) Manutenção\n 6. Voltar'));
 
 			switch (escolha) {
 				case 1:
@@ -41,7 +41,10 @@
 				case 4:
 					eventos();
 					break;
-				case 5:
+				case 5: 
+					manutencao()
+					break;
+				case 6:
 					sair();
 					break;
 				default:
@@ -281,16 +284,51 @@
 						
 				}
 
-		function restaurante(){
-
-			var diasDaSemana 
-
-			var diaSemana = parseInt(prompt("Qual o dia do seu evento?"))
-		}
-
 		function abastecer_carros() {
 			alert('HOTEL ' + hotel + ' - ABASTECER');
 			inicio();
+		}
+
+		function manutencao(){
+			let array = [];
+			let confirmacao = confirm ("Deseja cadastrar uma nova empresa?");
+			while (confirmacao != false){
+				let empresa = prompt("Qual o nome da empresa?");
+				let valorAparelho = parseFloat(prompt("Qual o valor por aparelho?"));
+				let quantidadeAparelho = parseInt(prompt("Qual a quantidade de aparelhos?"));
+				let desconto = parseFloat(prompt("Qual a porcentagem de desconto?"));
+				let minimoAparelhos = parseInt(prompt("Qual o número mínimo de aparelhos para conseguir o desconto?"));
+				let total = 0;
+
+				if (desconto === 0 || desconto === null){
+					total = valorAparelho * quantidadeAparelho;
+				} else {
+					total = (valorAparelho * quantidadeAparelho) * (desconto / 100);
+				}
+				const objeto = {
+					nome: empresa,
+					valor: total,
+				}
+
+				array.push(objeto)
+
+				confirmacao = confirme ("Deseja cadastrar uma nova empresa?");
+			}
+
+				//verificar menor valor e mostra nome da empresa
+				let menor = array[0].valor
+				let nome = array[0].nome
+
+				for(let i = 0; i < array.length; i++){
+					if(array[i].valor < menor){
+						menor = array[i].valor;
+						nome = array[i].nome;
+					}
+				} 
+
+				alert("A empresa com menor valor é " + nome + " com valor de R$" + menor.toFixed(2))
+			
+
 		}
 
 		function erro() {
