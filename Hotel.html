@@ -26,7 +26,7 @@
 
 		function inicio() {
 
-			var escolha = parseInt(prompt('Selecione uma opção\n\n 1.) Reserva de Quartos\n 2.) Cadastro de Hóspedes\n 3.) Abastecimento de Carros\n 4.) Eventos\n 5.) Manutenção\n 6. Voltar'));
+			var escolha = parseInt(prompt('Selecione uma opção\n\n 1.) Reserva de Quartos\n 2.) Cadastro de Hóspedes\n 3.) Abastecimento de Carros\n 4.) Eventos\n 5.) Manutenção\n 6.) Sair'));
 
 			switch (escolha) {
 				case 1:
@@ -86,7 +86,7 @@
 
 		function menu_cadastro(){
 
-			var menu = parseInt(prompt("Selecione uma opção: 1. Cadastrar - 2. Pesquisar - 3-listar - 4. Voltar"));
+			var menu = parseInt(prompt("Selecione uma opção:\n\n 1. Cadastrar\n 2. Pesquisar\n 3-listar\n 4. Voltar"));
 			switch(menu){
 				case 1: 
 					cadastro_hospedes();
@@ -189,7 +189,7 @@
 		}
 
 		function eventos(){
-			var menu_eventos = parseInt(prompt("Selecione uma opção: 1. Garçons - 2. Buffet - 3. Auditório - 4. Restaurante - 5. Voltar"));
+			var menu_eventos = parseInt(prompt("Selecione uma opção:\n\n 1. Garçons\n 2. Buffet\n 3. Auditório\n 4. Restaurante 5. Voltar"));
 			switch (menu_eventos){
 				case 1: 
 					garçon();
@@ -284,53 +284,109 @@
 						
 				}
 
+		function restaurante(){
+
+			var dia = prompt("Qual o dia do seu evento?");
+			var hora = prompt("Qual a hora do seu evento?");
+			var empresa;
+
+			if(dia == "segunda" && hora >= 7 && hora <=23){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para " + empresa + ". Segunda ás " + hora);
+			} else if (dia == "terça" && hora >= 7 && hora <= 23){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para" + empresa + ". Terça ás " + hora );
+			}else if (dia == "quarta" && hora >= 7 && hora <= 23){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para" + empresa + ". Quarta ás " + hora );
+			}else if (dia == "quinta" && hora >= 7 && hora <= 23){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para" + empresa + ". Quinta ás " + hora );
+			}else if (dia == "sexta" && hora >= 7 && hora <= 23){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para" + empresa + ". Sexta ás " + hora );
+			}else if (dia == "sabado" && hora >= 7 && hora <= 15){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para" + empresa + ". Sábado ás " + hora );
+			}else if (dia == "domingo" && hora >= 7 && hora <= 15){
+				empresa = prompt ("Qual o nome da empresa");
+				alert("Restaurante reservado para" + empresa + ". Domingo ás " + hora );
+			} else{
+				alert("Restaurante indisponível");
+			} inicio();
+		} 
+
 		function abastecer_carros() {
 			alert('HOTEL ' + hotel + ' - ABASTECER');
-			inicio();
+
+			var alcoolWO = parseFloat(prompt("Qual o valor do álcool no posto Wayne Oil?"));
+			var gasolinaWO = parseFloat(prompt("Qual o valor da gasolina no posto Wayne Oil?"));
+			var alcoolSP = parseFloat(prompt("Qual o valor do álcool no posto Stark Petrol?"));
+			var gasolinaSP = parseFloat(prompt("Qual o valor da gasolina no posto Stark Petrol?"));
+
+			var litrosGWO = gasolinaWO * 42;
+			var litrosGSP = gasolinaSP * 42;
+			var litrosAWO = alcoolWO * 42;
+			var litrosASP = alcoolSP * 42;
+			var descontoWO = litrosAWO - (litrosAWO * 0.30);
+			var descontoSP = litrosASP - (litrosASP * 0.30);
+
+			if(descontoWO < litrosGWO && descontoWO < descontoSP && descontoWO < litrosGSP){
+				alert(nome + " é mais barato abastecer com álcool no posto Wayne Oil");
+			} else if (descontoSP < descontoWO && descontoSP < litrosGWO && descontoSP < litrosGSP){
+				alert(nome + "é mais barato abastecer com álcool no posto  Stark Petrol");
+			} else if (litrosGSP < litrosGWO && litrosGSP < descontoSP && litrosGSP < descontoWO){
+				alert(nome + "é mais barato abastecer com gasolina no posto  Stark Petrol");
+			} else {
+				alert(nome + " é mais barato abastecer com gasolina no posto Wayne Oil");
+			} inicio();
 		}
 
 		function manutencao(){
-			let array = [];
-			let confirmacao = confirm ("Deseja cadastrar uma nova empresa?");
-			while (confirmacao != false){
-				let empresa = prompt("Qual o nome da empresa?");
-				let valorAparelho = parseFloat(prompt("Qual o valor por aparelho?"));
-				let quantidadeAparelho = parseInt(prompt("Qual a quantidade de aparelhos?"));
-				let desconto = parseFloat(prompt("Qual a porcentagem de desconto?"));
-				let minimoAparelhos = parseInt(prompt("Qual o número mínimo de aparelhos para conseguir o desconto?"));
-				let total = 0;
 
-				if (desconto === 0 || desconto === null){
-					total = valorAparelho * quantidadeAparelho;
-				} else {
-					total = (valorAparelho * quantidadeAparelho) * (desconto / 100);
-				}
-				const objeto = {
-					nome: empresa,
-					valor: total,
-				}
+		let array1 = [];
+    	let confimacao = confirm("Deseja cadastrar empresa?");
 
-				array.push(objeto)
+    	while(confimacao != false){
+        let empresa = prompt("Qual o nome da empresa?");
+        let valor = parseFloat(prompt("Qual o valor por aparelho?"));
+        let quantidade = parseInt(prompt("Qual a quantidade de aparelhos?"));
+        let desconto = parseInt(prompt("Qual a porcetagem de desconto?"));
+        let porcetagem = desconto / 100;
+        let minimo = parseInt(prompt("Qual o número mínimo de aparelhos para conseguir desconto?"));
+        let total = (valor * quantidade) * (porcetagem / 100);
+        if(desconto === 0){
+            total = valor * quantidade;
+        }
+        if(quantidade >= minimo){
+            total = (valor * quantidade) * (porcetagem / 100);
+        }
+        else{
+            total = valor * quantidade;
+        }
+        const dados = {
+            nome: empresa,
+            valor: total
+        }
+        array1.push(dados);
 
-				confirmacao = confirme ("Deseja cadastrar uma nova empresa?");
-			}
+        confimacao = confirm("Deseja cadastrar outra empresa?")
+    }
+    
+    	//verificar qual o menor valor e mostrar o nome da empresa
+    	let menor = array1[0].valor;
+    	let nome = array1[0].nome;
+    	for(let i = 0; i < array1.length; i++){
+       		 if(array1[i].valor < menor){
+          		  menor = array1[i].valor;
+           		  nome = array1[i].nome;
+        }
+     }
+   		 alert("A empresa com o menor valor é " + nome + " com o valor de R$ "+ menor.toFixed(2))
+} inicio();
 
-				//verificar menor valor e mostra nome da empresa
-				let menor = array[0].valor
-				let nome = array[0].nome
 
-				for(let i = 0; i < array.length; i++){
-					if(array[i].valor < menor){
-						menor = array[i].valor;
-						nome = array[i].nome;
-					}
-				} 
-
-				alert("A empresa com menor valor é " + nome + " com valor de R$" + menor.toFixed(2))
-			
-
-		}
-
+		
 		function erro() {
 			alert('Por favor, informe um número entre 1 e 4');
 			inicio();
